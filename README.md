@@ -1,6 +1,6 @@
-# monica
+# starter
 
-Application based on the monica backend
+Application based on the node+mongo starter backend
 
 ## Getting Started
 
