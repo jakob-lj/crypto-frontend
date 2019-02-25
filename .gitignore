@@ -1,5 +1,6 @@
 .gitignore
 .packages
+.idea/
 pubspec.lock
 flutter-plugins/
 build/
