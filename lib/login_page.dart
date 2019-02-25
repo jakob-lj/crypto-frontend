@@ -48,9 +48,21 @@ class _LoginPageState extends State<LoginPage> {
             onPressed: () {
               print(emailController.text);
               print(passwordController.text);
-              Navigator.of(context).pushNamed(HomePage.tag);
+              handleLoginInput(emailController.text, passwordController.text);
             },
           )
         ])));
+  }
+
+  void handleLoginInput(String username, String password) {
+    Auth auth = Auth.getInstance();
+    print("init");
+    auth.signInByEmail(username, password).then( (user) {
+      print("returned");
+      if (user != null) {
+        print("login ok");
+        Navigator.of(context).pushReplacementNamed(HomePage.tag);
+      } else print("login failed");
+    });
   }
 }

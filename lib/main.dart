@@ -11,7 +11,8 @@ void main() => runApp(Monica());
 class Monica extends StatelessWidget {
   final routes = <String, WidgetBuilder>{
     HomePage.tag: (context) => HomePage(),
-    LoginPage.tag: (context) => LoginPage()
+    LoginPage.tag: (context) => LoginPage(),
+    SettingsScreen.tag: (context) => SettingsScreen()
   };
 
   Widget build(BuildContext context) {
@@ -58,32 +59,48 @@ class LoadingPage extends StatelessWidget {
     });
 
     Widget g = Scaffold(
-      appBar: AppBar(title: Text("Loading")),
+        appBar: AppBar(title: Text("Loading"), actions: <Widget>[IconButton(icon: Icon(Icons.settings), onPressed: () {_getSettings(context);} )]),
       body: Center(child:CircularProgressIndicator())
     );
     return g;
   }
+
+
+  void _getSettings(BuildContext context) {
+    print("gettng settings");
+    Navigator.of(context).pushNamed(SettingsScreen.tag);
+  }
 }
 
-// not used since 19.1
-class MonicaScreen extends StatelessWidget {
+class SettingsScreen extends StatefulWidget {
+  static String tag = "settings-screen";
+  @override
+  _SettingsScreenState createState() => _SettingsScreenState();
+}
 
+class _SettingsScreenState extends State<SettingsScreen> {
+  void _logOut() {
+    Auth auth = Auth.getInstance();
+    auth.signOut();
+    Navigator.of(context).pushNamedAndRemoveUntil(LoginPage.tag, (Route r) => (r == null));
+  }
+
+
+
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Monica")),
-        body: Center(
-            child: ListView(
-                children: [
-                  Text("Monica start"),
-                  MaterialButton(
-                      child: Text("Button"),
-                      onPressed: () {
-                        Navigator.of(context).pushNamed(LoginPage.tag);
-                      }
-
-                  )
-                ]
-            )
+        appBar: AppBar(title:Text("Innstillinger")),
+        body: ListView(
+            children: <Widget>[
+              ListTile(
+                  title: Text("Logg ut"),
+                  onTap: () {
+                    _logOut();
+                  }
+              ),
+            ]
         )
     );
   }
