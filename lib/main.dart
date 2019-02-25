@@ -19,7 +19,7 @@ class Monica extends StatelessWidget {
     Backend.init();
 
     //for testing
-    getUserData();
+    //getUserData();
 
     return MaterialApp(
       title:("Hakon"),

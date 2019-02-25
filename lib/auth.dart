@@ -7,7 +7,7 @@ import 'user.dart';
 class Auth {
   // static methods
 
-  static const String token_key = "last_token_key";
+  static const String token_key = "crypto_token_key";
 
   static Auth authClient;
   Future<SharedPreferences> preferences;
