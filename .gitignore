@@ -1,0 +1,4 @@
+.gitignore
+.packages
+pubspec.lock
+flutter-plugins
