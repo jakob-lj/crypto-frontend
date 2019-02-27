@@ -2,6 +2,7 @@ package io.flutter.plugins;
 
 import io.flutter.plugin.common.PluginRegistry;
 import io.flutter.plugins.sharedpreferences.SharedPreferencesPlugin;
+import io.intheloup.streamschannel.StreamsChannelPlugin;
 
 /**
  * Generated file. Do not edit.
@@ -12,6 +13,7 @@ public final class GeneratedPluginRegistrant {
       return;
     }
     SharedPreferencesPlugin.registerWith(registry.registrarFor("io.flutter.plugins.sharedpreferences.SharedPreferencesPlugin"));
+    StreamsChannelPlugin.registerWith(registry.registrarFor("io.intheloup.streamschannel.StreamsChannelPlugin"));
   }
 
   private static boolean alreadyRegisteredWith(PluginRegistry registry) {

@@ -4,8 +4,12 @@ import 'home_page.dart';
 import 'backend.dart';
 import 'auth.dart';
 import 'user.dart';
+import 'crypto_peer.dart';
+import 'start_page.dart';
+import 'dart:convert';
+import 'websockets.dart';
 
-void main() => runApp(Monica());
+//void main() => runApp(Monica());
 
 
 class Monica extends StatelessWidget {
@@ -21,6 +25,9 @@ class Monica extends StatelessWidget {
 
     //for testing
     //getUserData();
+
+    //CryptoPeer.ss();
+    CryptoPeer.c();
 
     return MaterialApp(
       title:("Hakon"),
@@ -86,6 +93,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
 
+  void _testPeer() {
+    CryptoPeer.send();
+  }
+
 
 
   @override
@@ -100,8 +111,38 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     _logOut();
                   }
               ),
+              ListTile(title: Text("take me for a test run"), onTap: () {
+                _testPeer();
+              })
             ]
         )
     );
   }
+}
+
+
+void main() => runApp(new MyApp());
+
+class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    sockets.initCommunication();
+    return new MaterialApp(
+      title: 'WebSockets Demo',
+      theme: new ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: Scaffold(
+        appBar: AppBar(actions: <Widget>[IconButton(icon: Icon(Icons.info), onPressed: _ok)],),
+        body: Text("HOME")
+      ),
+    );
+  }
+
+  _ok() {
+    print("sending");
+    sockets.send(json.encode({'action':'echo', 'data':'data'}));
+  }
+
 }

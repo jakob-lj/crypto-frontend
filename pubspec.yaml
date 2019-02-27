@@ -23,6 +23,10 @@ dependencies:
   shared_preferences: ^0.4.3
   flutter_launcher_icons: ^0.7.0
   json_rpc_2: ^2.0.9
+  streams_channel: ^0.2.2
+  stream_channel: ^1.6.8
+  web_socket_channel: ^1.0.9
+  shelf_web_socket: ^0.2.2+4
 
 
 dev_dependencies:
